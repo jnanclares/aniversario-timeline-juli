@@ -34,6 +34,35 @@ jobs:
       - name: Generate timeline
         run: python build_timeline.py
 
+      - name: Verify timeline.json was created
+        run: |
+          if [ -f "timeline.json" ]; then
+            echo "✅ timeline.json created successfully"
+            echo "File size: $(wc -c < timeline.json) bytes"
+            echo "First few lines:"
+            head -5 timeline.json
+          else
+            echo "❌ timeline.json was not created!"
+            exit 1
+          fi
+
+      - name: List files in root directory
+        run: |
+          echo "Files in root directory:"
+          ls -la
+          echo ""
+          echo "Checking photo directories:"
+          if [ -d "Pre" ]; then
+            echo "✅ Pre directory exists with $(find Pre -name "*.jpg" -o -name "*.png" -o -name "*.gif" | wc -l) photos"
+          else
+            echo "❌ Pre directory missing!"
+          fi
+          if [ -d "Post" ]; then
+            echo "✅ Post directory exists with $(find Post -name "*.jpg" -o -name "*.png" -o -name "*.gif" | wc -l) photos"
+          else
+            echo "❌ Post directory missing!"
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
