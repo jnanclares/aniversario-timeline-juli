@@ -34,12 +34,6 @@ jobs:
       - name: Generate timeline
         run: python build_timeline.py
 
-      - name: Copy site files to root
-        run: |
-          cp site/*.html .
-          cp site/*.css .
-          cp site/*.js .
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
