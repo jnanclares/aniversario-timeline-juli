@@ -32,7 +32,10 @@ jobs:
           pip install pandas openpyxl
 
       - name: Generate timeline
-        run: python build_timeline.py
+        run: |
+          python build_timeline.py
+          echo "Timeline generation completed"
+          ls -la timeline.json
 
       - name: Verify timeline.json was created
         run: |
@@ -65,6 +68,15 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Final verification before upload
+        run: |
+          echo "Final verification:"
+          echo "Files to be uploaded:"
+          find . -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.json" -o -name "_headers" -o -name ".htaccess" | head -20
+          echo ""
+          echo "Timeline.json content preview:"
+          head -10 timeline.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

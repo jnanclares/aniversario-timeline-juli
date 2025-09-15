@@ -1,0 +1,11 @@
+# Ensure JSON files are served with correct MIME type
+<Files "*.json">
+    Header set Content-Type "application/json"
+</Files>
+
+# Enable CORS for JSON files
+<Files "timeline.json">
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</Files>
