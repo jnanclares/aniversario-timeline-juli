@@ -1,6 +1,6 @@
 async function loadTimeline(section) {
   try {
-    const res = await fetch('../timeline.json', { cache: 'no-store' });
+    const res = await fetch('./timeline.json', { cache: 'no-store' });
     if (!res.ok) {
       renderError('No se pudo cargar timeline.json. Primero ejecuta build_timeline.py');
       return;
@@ -61,7 +61,7 @@ function createWeekCard(week, index) {
       ${week.comment ? `<p class="comment">${week.comment}</p>` : ''}
       <div class="photos-grid">
         ${(week.photos || []).map(photo => 
-          `<img src="../${photo}" alt="Foto W${week.week}" loading="lazy" />`
+          `<img src="./${photo}" alt="Foto W${week.week}" loading="lazy" />`
         ).join('')}
       </div>
     </div>
