@@ -9,6 +9,14 @@ async function loadTimeline(section) {
     const data = await res.json();
     const weeks = section === 'pre' ? data.pre : data.post;
     
+    // Debug: Log photo paths
+    console.log(`Loading ${section} timeline with ${weeks.length} weeks`);
+    weeks.forEach(week => {
+      if (week.photos && week.photos.length > 0) {
+        console.log(`Week ${week.week} photos:`, week.photos);
+      }
+    });
+    
     renderTimeline(weeks || []);
     setupLightbox();
   } catch (e) {
@@ -52,6 +60,22 @@ function createWeekCard(week, index) {
   
   const dates = [week.start, week.end].filter(Boolean).join(' – ');
   
+  // Create photo elements with error handling
+  const photoElements = (week.photos || []).map(photo => {
+    const img = document.createElement('img');
+    img.src = `./${photo}`;
+    img.alt = `Foto W${week.week}`;
+    img.loading = 'lazy';
+    img.onerror = function() {
+      console.warn(`Failed to load image: ${photo}`);
+      this.style.display = 'none';
+    };
+    img.onload = function() {
+      console.log(`Successfully loaded image: ${photo}`);
+    };
+    return img.outerHTML;
+  }).join('');
+  
   card.innerHTML = `
     <div class="week-card-header">
       <h3 class="week-title">Semana ${week.week}</h3>
@@ -60,9 +84,7 @@ function createWeekCard(week, index) {
     <div class="week-content">
       ${week.comment ? `<p class="comment">${week.comment}</p>` : ''}
       <div class="photos-grid">
-        ${(week.photos || []).map(photo => 
-          `<img src="./${photo}" alt="Foto W${week.week}" loading="lazy" />`
-        ).join('')}
+        ${photoElements}
       </div>
     </div>
   `;

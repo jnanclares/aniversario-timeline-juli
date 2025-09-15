@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test Images</title>
+</head>
+<body>
+    <h1>Test de Imágenes</h1>
+    <div id="test-results"></div>
+    
+    <script>
+        // Test images from timeline.json
+        const testImages = [
+            "Pre/W1/W1.png",
+            "Pre/W2/W2.jpg", 
+            "Post/W1/W1.jpg"
+        ];
+        
+        const resultsDiv = document.getElementById('test-results');
+        
+        testImages.forEach(imagePath => {
+            const img = document.createElement('img');
+            img.src = `./${imagePath}`;
+            img.style.width = '200px';
+            img.style.height = '150px';
+            img.style.objectFit = 'cover';
+            img.style.margin = '10px';
+            img.style.border = '2px solid #ccc';
+            
+            const container = document.createElement('div');
+            container.style.margin = '20px';
+            container.style.padding = '10px';
+            container.style.border = '1px solid #ddd';
+            
+            const label = document.createElement('p');
+            label.textContent = `Testing: ${imagePath}`;
+            
+            const status = document.createElement('p');
+            status.textContent = 'Loading...';
+            
+            img.onload = function() {
+                status.textContent = '✅ Loaded successfully';
+                status.style.color = 'green';
+            };
+            
+            img.onerror = function() {
+                status.textContent = '❌ Failed to load';
+                status.style.color = 'red';
+            };
+            
+            container.appendChild(label);
+            container.appendChild(img);
+            container.appendChild(status);
+            resultsDiv.appendChild(container);
+        });
+    </script>
+</body>
+</html>
