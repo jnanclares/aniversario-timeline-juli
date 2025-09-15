@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre Noviazgo - Nuestro Aniversario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="page-header">
+    <a href="index.html" class="back-btn">← Volver</a>
+    <h1>Pre Noviazgo</h1>
+    <p class="subtitle">Las semanas que nos conocimos</p>
+  </header>
+
+  <main class="timeline-container">
+    <div id="timeline" class="timeline"></div>
+  </main>
+
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox-close" aria-label="Cerrar">×</button>
+    <button class="lightbox-prev" aria-label="Anterior">‹</button>
+    <img class="lightbox-image" alt="Foto" />
+    <button class="lightbox-next" aria-label="Siguiente">›</button>
+  </div>
+
+  <script src="timeline.js" defer></script>
+  <script>
+    // Load Pre data specifically
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTimeline('pre');
+    });
+  </script>
+</body>
+</html>

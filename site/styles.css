@@ -1,0 +1,324 @@
+:root {
+  --bg: #fff8fb;
+  --card: #ffffff;
+  --text: #3a2a2d;
+  --muted: #7a5a60;
+  --accent: #e67aa8;
+  --accent-strong: #d15f92;
+  --border: #f1e2e8;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-strong: rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  line-height: 1.6;
+}
+
+/* Landing Page */
+.header {
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.header h1 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px;
+  font-size: 48px;
+  color: var(--accent-strong);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.landing {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.timeline-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (min-width: 600px) {
+  .timeline-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.timeline-card {
+  display: block;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--shadow-strong);
+  border-color: var(--accent);
+}
+
+.timeline-card h2 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px;
+  font-size: 28px;
+  color: var(--accent-strong);
+}
+
+.timeline-card p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.week-count {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.card-decoration {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 32px;
+  opacity: 0.3;
+}
+
+/* Page Headers */
+.page-header {
+  padding: 32px 16px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  color: white;
+  margin-bottom: 32px;
+}
+
+.back-btn {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.page-header h1 {
+  font-family: "Playfair Display", serif;
+  margin: 0 0 8px;
+  font-size: 36px;
+}
+
+.page-header .subtitle {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Timeline Container */
+.timeline-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Week Cards */
+.week-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.week-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--shadow);
+  border-color: var(--accent);
+}
+
+.week-card-header {
+  padding: 20px;
+  background: linear-gradient(135deg, #fff2f7 0%, #ffe8f0 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.week-title {
+  font-family: "Playfair Display", serif;
+  font-size: 24px;
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+}
+
+.week-dates {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.week-content {
+  padding: 20px;
+}
+
+.comment {
+  margin: 0 0 16px;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  justify-items: center;
+}
+
+/* Centrar cuando hay pocas fotos */
+.photos-grid:has(img:nth-child(1):last-child) {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.photos-grid:has(img:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+@media (min-width: 400px) {
+  .photos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .photos-grid:has(img:nth-child(1):last-child) {
+    grid-template-columns: 1fr;
+  }
+  
+  .photos-grid:has(img:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.photos-grid img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #f9f4f6;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.photos-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 16px;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close {
+  top: 16px;
+  right: 16px;
+}
+
+.lightbox-prev {
+  left: 16px;
+}
+
+.lightbox-next {
+  right: 16px;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.week-card:nth-child(1) { animation-delay: 0.1s; }
+.week-card:nth-child(2) { animation-delay: 0.2s; }
+.week-card:nth-child(3) { animation-delay: 0.3s; }
+.week-card:nth-child(4) { animation-delay: 0.4s; }
+.week-card:nth-child(5) { animation-delay: 0.5s; }
+.week-card:nth-child(6) { animation-delay: 0.6s; }
+.week-card:nth-child(7) { animation-delay: 0.7s; }
+.week-card:nth-child(8) { animation-delay: 0.8s; }
+.week-card:nth-child(9) { animation-delay: 0.9s; }
+.week-card:nth-child(10) { animation-delay: 1.0s; }
